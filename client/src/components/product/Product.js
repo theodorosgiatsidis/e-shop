@@ -4,10 +4,9 @@ import "./product.css";
 
 function Product(props) {
   const history = useHistory();
-  console.log(history);
 
   const handleClick = () => {
-    history.push(`/products/${props.id}`);
+    history.push(`/products/${props.title}`);
   };
 
   return (
@@ -18,10 +17,10 @@ function Product(props) {
         <img src={props.picture} alt="" />
         <div className="info">
           <div className="p-icon">
-            <i onClick={handleClick} class="fas fa-shopping-cart"></i>
+            <i onClick={handleClick} className="fas fa-shopping-cart"></i>
           </div>
           <div className="p-icon">
-            <i class="fas fa-search"></i>
+            <i className="fas fa-search"></i>
           </div>
           <div className="p-icon">
             <i className="far fa-heart"></i>

@@ -14,6 +14,7 @@ export const StoreContext = React.createContext({
 
 export const StoreContextProvider = (props) => {
   const [clothes, setClothes] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
 
   const [state, dispatch] = useReducer(Reducer, INITIAL_STATE);
 
@@ -26,6 +27,8 @@ export const StoreContextProvider = (props) => {
       value={{
         clothes,
         setClothes,
+        cartItems,
+        setCartItems,
         user: state.user,
         isFetching: state.isFetching,
         error: state.error,

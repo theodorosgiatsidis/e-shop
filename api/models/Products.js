@@ -6,7 +6,6 @@ const ClotheSchema = new mongoose.Schema(
     title: {
       type: String,
       required: true,
-      unique: true,
     },
 
     description: {
@@ -20,6 +19,14 @@ const ClotheSchema = new mongoose.Schema(
     },
     price: {
       type: Number,
+      required: true,
+    },
+    size: {
+      type: String,
+      required: true,
+    },
+    color: {
+      type: String,
       required: true,
     },
   },

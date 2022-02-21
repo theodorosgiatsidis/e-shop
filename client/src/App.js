@@ -6,7 +6,9 @@ import { StoreContext, StoreContextProvider } from "./context/store";
 import { useContext } from "react";
 import ProductList from "./pages/productList/ProductList";
 import Product from "./pages/product/Product";
-import Cart from "./pages/cart/Cart";
+import NavBar from "./components/navbar/NavBar";
+import Newsletter from "./components/newsletter/Newsletter";
+import Footer from "./components/footer/Footer";
 
 function App() {
   const { user } = useContext(StoreContext);
@@ -15,6 +17,7 @@ function App() {
     <StoreContextProvider>
       <Router>
         <div className="App">
+          <NavBar />
           <Switch>
             <Route exact path="/">
               <ProductList />
@@ -23,13 +26,12 @@ function App() {
             <Route path="/register">
               <Register />
             </Route>
-            <Route path="/products/:id">
+            <Route path="/products/:title">
               <Product />
             </Route>
-            <Route path="/cart">
-              <Cart />
-            </Route>
           </Switch>
+          <Newsletter />
+          <Footer />
         </div>
       </Router>
     </StoreContextProvider>

@@ -22,4 +22,16 @@ router.get("/", async (req, res) => {
   }
 });
 
+//GET PRODUCT by ID
+
+router.get("/:title", async (req, res) => {
+  try {
+    const title = req.params.title;
+    const products = await Product.find({ title });
+    products.filter((p) => p.title === title);
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
 module.exports = router;

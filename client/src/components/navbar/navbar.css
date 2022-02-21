@@ -52,3 +52,50 @@ span {
   font-weight: 500;
   padding-left: 10px;
 }
+
+.popup-content {
+  padding: 50px;
+  color: #787878;
+  background-color: #fcf7f8;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  position: fixed;
+}
+
+.Basket {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 10px;
+  padding: 10px;
+}
+
+.popup-content {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 11vw;
+  height: max-content;
+}
+
+.totalPrice {
+  padding: 10px;
+  font-weight: 500;
+}
+
+.img-basket {
+  border-radius: 10px;
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  padding-bottom: 5px;
+}
+
+.icon-basket {
+  color: red;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}

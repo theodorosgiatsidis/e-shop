@@ -1,65 +1,118 @@
-import React, { useContext, useState } from "react";
-import { useParams } from "react-router-dom";
-import Footer from "../../components/footer/Footer";
-import NavBar from "../../components/navbar/NavBar";
-import Newsletter from "../../components/newsletter/Newsletter";
+import React, { useContext, useEffect, useState } from "react";
 import { StoreContext } from "../../context/store";
+import axios from "axios";
 import "./product.css";
+import { useParams } from "react-router-dom";
 
 const Product = () => {
-  const { clothes, setClothes } = useContext(StoreContext);
-  const [count, setCount] = useState(1);
-  const { id } = useParams();
-  const res = clothes.find((c) => c._id === id);
+  const [size, setSize] = useState("");
+  const [color, setColor] = useState("");
+  const [quantity, setQuantity] = useState(1);
+  const { cartItems, setCartItems } = useContext(StoreContext);
+  const [product, setProduct] = useState([]);
+  const { title } = useParams();
+
+  useEffect(() => {
+    getProduct();
+    console.log(cartItems);
+  }, [size]);
+
+  const getProduct = async () => {
+    const res = await axios.get("/products/" + title);
+    setProduct(res.data);
+  };
 
   const incrementCount = () => {
-    setCount(count + 1);
+    setQuantity(quantity + 1);
   };
 
   const decrementCount = () => {
-    setCount(count - 1);
+    setQuantity(quantity - 1);
   };
 
-  return (
+  const handleColor = (e) => {
+    setColor(e.target.id);
+  };
+
+  const handleOption = (e) => {
+    setSize(e.target.value);
+  };
+
+  const onAdd = () => {
+    if (!color) {
+      alert("Select a Color Option");
+      return;
+    }
+    if (!size) {
+      alert("Select a Size Option");
+      return;
+    }
+
+    const productToAdd = product.find(
+      (p) => p.size === size && p.color === color
+    );
+
+    if (productToAdd) {
+      const exist = cartItems.find((x) => x._id === productToAdd._id);
+      console.log(exist);
+      if (exist) {
+        setCartItems(
+          cartItems.map((x) =>
+            x._id === productToAdd._id
+              ? {
+                  ...x,
+                  quantity: quantity + 1,
+                }
+              : x
+          )
+        );
+      } else {
+        setCartItems([...cartItems, { ...productToAdd, quantity }]);
+      }
+    } else {
+      alert("Oops product not available");
+    }
+  };
+
+  const uniqueSizes = [
+    ...new Map(product.map((item) => [item.size, item.size])).values(),
+  ];
+
+  const uniqueColors = [
+    ...new Map(product.map((item) => [item.color, item.color])).values(),
+  ];
+
+  return product && product.length > 0 ? (
     <div className="product-list">
-      <NavBar />
       <div className="wrapper">
-        <div className="Image">
-          <img className="Img" src={res.picture} alt="" />
+        <div>
+          <h1 className="title">{product[0].title}</h1>
+          <img className="Img" src={product[0].picture} />
+          <p className="desc">{product[0].description}</p>
+          <span className="price">Price: {product[0].price}$</span>
         </div>
-        <div className="Info-Container">
-          <h1 className="title">{res.title}</h1>
-          <p className="desc">{res.description}</p>
-          <span className="price">Price: {res.price}$</span>
-        </div>
+
         <div className="Filter-container">
           <div className="Filter">
             <span className="Filter-Title">Color</span>
-            <div
-              style={{ backgroundColor: "black" }}
-              className="filter-color"
-            ></div>
-            <div
-              style={{ backgroundColor: "darkblue" }}
-              className="filter-color"
-            ></div>
-            <div
-              style={{ backgroundColor: "gray" }}
-              className="filter-color"
-            ></div>
+            {uniqueColors.map((x) => (
+              <div
+                onClick={handleColor}
+                style={{ backgroundColor: x }}
+                className="filter-color"
+                id={x}
+              ></div>
+            ))}
           </div>
         </div>
-        <div className="FilterSize">
-          <select className="size-select">
-            <option disabled selected>
-              Size
-            </option>
-            <option>XS</option>
-            <option>S</option>
-            <option>M</option>
-            <option>L</option>
-            <option>XL</option>
-            <option>XXL</option>
+        <div onChange={handleOption} className="FilterSize">
+          <select id="Size" className="size-select">
+            <option>Size</option>
+            {uniqueSizes.map((x) => (
+              <option key={x} value={x}>
+                {x}
+              </option>
+            ))}
           </select>
         </div>
 
@@ -68,22 +121,20 @@ const Product = () => {
             <i
               style={{ cursor: "pointer" }}
               onClick={decrementCount}
-              class="fas fa-minus"
+              className="fas fa-minus"
             ></i>
-            <span className="Amount">{count}</span>
+            <span className="Amount">{quantity}</span>
             <i
               style={{ cursor: "pointer" }}
               onClick={incrementCount}
-              class="fas fa-plus"
+              className="fas fa-plus"
             ></i>
-            <button>ADD TO CART</button>
+            <button onClick={onAdd}>ADD TO CART</button>
           </div>
         </div>
       </div>
-      <Newsletter />
-      <Footer />
     </div>
-  );
+  ) : null;
 };
 
 export default Product;

@@ -16,16 +16,33 @@ const Products = () => {
     setClothes(res.data);
   };
 
+  const newClothes = clothes.reduce((acc, current) => {
+    if (!acc[current.title]) {
+      const { size, color, ...rest } = current;
+      acc[current.title] = rest;
+      acc[current.title].variants = [{ size, color }];
+    } else {
+      const { size, color } = current;
+      acc[current.title].variants.push({ size, color });
+    }
+
+    return acc;
+  }, {});
+
+  const x = Object.values(newClothes);
+
+  // console.log(arrayUniqueByKey);
+
   return (
     <div className="products">
-      {clothes.map((c) => (
+      {x.map((item) => (
         <Product
-          key={c._id}
-          title={c.title}
-          description={c.description}
-          picture={c.picture}
-          id={c._id}
-          price={c.price}
+          key={item._id}
+          title={item.title}
+          description={item.description}
+          picture={item.picture}
+          id={item._id}
+          price={item.price}
         />
       ))}
     </div>
