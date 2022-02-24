@@ -76,10 +76,10 @@ const NavBar = () => {
             show={show}
             popupClass={"popup-content"}
           >
-            <div>
+            <div className="Basket">
               {cartItems.length === 0 && <h2>Cart Is Empty</h2>}
               {cartItems.map((product) => (
-                <div className="Basket" key={product._id}>
+                <div className="BasketItems" key={product._id}>
                   <h2>{product.title}</h2>
                   <img className="img-basket" src={product.picture} />
                   <span>Price:{product.price}$</span>

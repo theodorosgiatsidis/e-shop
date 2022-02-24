@@ -14,7 +14,6 @@ const Product = () => {
 
   useEffect(() => {
     getProduct();
-    console.log(cartItems);
   }, [size]);
 
   const getProduct = async () => {
@@ -54,14 +53,14 @@ const Product = () => {
 
     if (productToAdd) {
       const exist = cartItems.find((x) => x._id === productToAdd._id);
-      console.log(exist);
+
       if (exist) {
         setCartItems(
           cartItems.map((x) =>
             x._id === productToAdd._id
               ? {
                   ...x,
-                  quantity: quantity + 1,
+                  quantity: quantity,
                 }
               : x
           )

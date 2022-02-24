@@ -5,8 +5,17 @@
 
 .Img {
   width: 100%;
-  height: 30vh;
+  height: 50%;
   object-fit: cover;
+}
+
+Img:hover {
+  box-shadow: -1px 1px 10px -2px rgba(0, 0, 0, 0.35);
+  transition: transform 0.5s ease;
+  transform: scale(1.1);
+  cursor: pointer;
+  border-radius: 5px;
+  opacity: 1;
 }
 
 .Info-Container {

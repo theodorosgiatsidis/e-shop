@@ -16,22 +16,20 @@ const Products = () => {
     setClothes(res.data);
   };
 
-  const newClothes = clothes.reduce((acc, current) => {
-    if (!acc[current.title]) {
+  const newClothes = clothes.reduce((total, current) => {
+    if (!total[current.title]) {
       const { size, color, ...rest } = current;
-      acc[current.title] = rest;
-      acc[current.title].variants = [{ size, color }];
+      total[current.title] = rest;
+      total[current.title].variants = [{ size, color }];
     } else {
       const { size, color } = current;
-      acc[current.title].variants.push({ size, color });
+      total[current.title].variants.push({ size, color });
     }
 
-    return acc;
+    return total;
   }, {});
 
   const x = Object.values(newClothes);
-
-  // console.log(arrayUniqueByKey);
 
   return (
     <div className="products">

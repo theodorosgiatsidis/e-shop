@@ -53,31 +53,28 @@ span {
   padding-left: 10px;
 }
 
-.popup-content {
-  padding: 50px;
-  color: #787878;
-  background-color: #fcf7f8;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  position: fixed;
+.Basket {
+  position: static;
+  overflow-y: scroll;
+  max-height: 600px;
 }
 
-.Basket {
+.BasketItems {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  border: 1px solid black;
   margin: 10px;
   padding: 10px;
 }
 
-.popup-content {
-  position: relative;
+/* .popup-content {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 11vw;
-  height: max-content;
-}
+  position: absolute;
+} */
 
 .totalPrice {
   padding: 10px;
