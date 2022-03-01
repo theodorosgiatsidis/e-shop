@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const authRoute = require("./routes/auth");
 const Product = require("./routes/products");
-// const Payment = require("./routes/payment");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const stripe = require("stripe")(
@@ -27,7 +26,6 @@ app.use(express.json());
 
 app.use("/api/auth", authRoute);
 app.use("/api/products", Product);
-// app.use("/api/payment", Payment);
 app.post("/payment", cors(), async (req, res) => {
   let { amount, id } = req.body;
   try {

@@ -7,7 +7,6 @@ import "./navbar.css";
 const NavBar = () => {
   const { user, dispatch } = useContext(StoreContext);
   const { cartItems, setCartItems } = useContext(StoreContext);
-  const { favouriteProducts, setFavouriteProducts } = useContext(StoreContext);
   const anchor = React.useRef();
   const [show, setShow] = React.useState(false);
   const itemsPrice = cartItems.reduce((a, c) => a + c.quantity * c.price, 0);
@@ -103,9 +102,11 @@ const NavBar = () => {
                 ) : null}
               </div>
               <div className="Checkout">
-                <button onClick={handleClick} className="checkout-btn">
-                  PAY NOW
-                </button>
+                {itemsPrice ? (
+                  <button onClick={handleClick} className="checkout-btn">
+                    PAY NOW
+                  </button>
+                ) : null}
               </div>
             </div>
           </Popup>

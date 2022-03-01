@@ -100,6 +100,8 @@ Img:hover {
   font-weight: 500;
   margin-left: 10px;
   border-radius: 10px;
+  position: relative;
+  bottom: 20px;
 }
 
 .cart-btn:hover {
