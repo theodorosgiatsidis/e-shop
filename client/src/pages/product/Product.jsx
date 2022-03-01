@@ -128,7 +128,9 @@ const Product = () => {
               onClick={incrementCount}
               className="fas fa-plus"
             ></i>
-            <button onClick={onAdd}>ADD TO CART</button>
+            <button className="cart-btn" onClick={onAdd}>
+              ADD TO CART
+            </button>
           </div>
         </div>
       </div>

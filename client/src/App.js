@@ -9,6 +9,7 @@ import Product from "./pages/product/Product";
 import NavBar from "./components/navbar/NavBar";
 import Newsletter from "./components/newsletter/Newsletter";
 import Footer from "./components/footer/Footer";
+import StripeContainer from "./components/stripe-container/StripeContainer";
 
 function App() {
   const { user } = useContext(StoreContext);
@@ -28,6 +29,9 @@ function App() {
             </Route>
             <Route path="/products/:title">
               <Product />
+            </Route>
+            <Route path="/checkout">
+              <StripeContainer />
             </Route>
           </Switch>
           <Newsletter />

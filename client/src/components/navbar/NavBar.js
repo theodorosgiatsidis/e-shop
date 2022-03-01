@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { StoreContext } from "../../context/store";
 import { Popup } from "@progress/kendo-react-popup";
 import "./navbar.css";
@@ -7,10 +7,11 @@ import "./navbar.css";
 const NavBar = () => {
   const { user, dispatch } = useContext(StoreContext);
   const { cartItems, setCartItems } = useContext(StoreContext);
-  const { clothes } = useContext(StoreContext);
+  const { favouriteProducts, setFavouriteProducts } = useContext(StoreContext);
   const anchor = React.useRef();
   const [show, setShow] = React.useState(false);
   const itemsPrice = cartItems.reduce((a, c) => a + c.quantity * c.price, 0);
+  const history = useHistory();
 
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" });
@@ -36,6 +37,10 @@ const NavBar = () => {
         )
       );
     }
+  };
+
+  const handleClick = () => {
+    history.push("/checkout");
   };
 
   return (
@@ -96,6 +101,11 @@ const NavBar = () => {
                 {itemsPrice ? (
                   <strong>Total Price: {itemsPrice}$</strong>
                 ) : null}
+              </div>
+              <div className="Checkout">
+                <button onClick={handleClick} className="checkout-btn">
+                  PAY NOW
+                </button>
               </div>
             </div>
           </Popup>
