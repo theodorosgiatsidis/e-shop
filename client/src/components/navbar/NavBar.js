@@ -65,12 +65,13 @@ const NavBar = () => {
         </div>
         <div className="navRight">
           {user && <i className="fas fa-user-circle"></i>}
+          <i onClick={ClickHandler} className="icon fas fa-heart"></i>
           <i
             ref={anchor}
             onClick={onClick}
             className="icon fas fa-shopping-cart"
           ></i>
-          <i onClick={ClickHandler} className="icon fas fa-heart"></i>
+          <span className="basket-length">{cartItems.length}</span>
           <Link className="link" to="/login">
             {!user && <span>LOGIN</span>}
           </Link>
