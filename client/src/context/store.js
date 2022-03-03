@@ -16,6 +16,7 @@ export const StoreContextProvider = (props) => {
   const [clothes, setClothes] = useState([]);
   const [cartItems, setCartItems] = useState([]);
   const [state, dispatch] = useReducer(Reducer, INITIAL_STATE);
+  const [favouriteProducts, setFavouriteProducts] = useState([]);
 
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(state.user));
@@ -32,6 +33,8 @@ export const StoreContextProvider = (props) => {
         isFetching: state.isFetching,
         error: state.error,
         dispatch,
+        favouriteProducts,
+        setFavouriteProducts,
       }}
     >
       {props.children}

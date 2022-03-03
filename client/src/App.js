@@ -10,6 +10,7 @@ import NavBar from "./components/navbar/NavBar";
 import Newsletter from "./components/newsletter/Newsletter";
 import Footer from "./components/footer/Footer";
 import StripeContainer from "./components/stripe-container/StripeContainer";
+import FavouriteProducts from "./pages/favouriteProducts/FavouriteProducts";
 
 function App() {
   const { user } = useContext(StoreContext);
@@ -32,6 +33,9 @@ function App() {
             </Route>
             <Route path="/checkout">
               <StripeContainer />
+            </Route>
+            <Route path="/favourites">
+              <FavouriteProducts />
             </Route>
           </Switch>
           <Newsletter />

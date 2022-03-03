@@ -6,11 +6,8 @@ const authRoute = require("./routes/auth");
 const Product = require("./routes/products");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const stripe = require("stripe")(
-  "sk_test_51KX3YoLgVGdCnLHlqEQbyDfmUh0dsYo8xG3hGSJFDZuDe3odjsMChhEOtieP3bUjwIfdMnoS6UDSuRSUWKuDTg7S00sYo7O5uw"
-);
-
 dotenv.config();
+const stripe = require("stripe")(process.env.STRIPE_SECRET_TEST);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

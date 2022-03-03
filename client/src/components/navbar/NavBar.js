@@ -42,6 +42,9 @@ const NavBar = () => {
     history.push("/checkout");
   };
 
+  const ClickHandler = () => {
+    history.push("/favourites");
+  };
   return (
     <div className="navbar">
       <div className="container">
@@ -67,7 +70,7 @@ const NavBar = () => {
             onClick={onClick}
             className="icon fas fa-shopping-cart"
           ></i>
-          <i className="icon fas fa-heart"></i>
+          <i onClick={ClickHandler} className="icon fas fa-heart"></i>
           <Link className="link" to="/login">
             {!user && <span>LOGIN</span>}
           </Link>
