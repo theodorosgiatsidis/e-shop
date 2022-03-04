@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { StoreContext } from "../../context/store";
 import axios from "axios";
 import "./product.css";
@@ -77,9 +77,17 @@ const Product = () => {
     ...new Map(product.map((item) => [item.size, item.size])).values(),
   ];
 
-  const uniqueColors = [
-    ...new Map(product.map((item) => [item.color, item.color])).values(),
-  ];
+  const uniqueColors = useMemo(() => {
+    return [
+      ...new Map(product.map((item) => [item.color, item.color])).values(),
+    ];
+  }, [product]);
+
+  useEffect(() => {
+    if (uniqueColors.length > 0) {
+      setColor(uniqueColors[0]);
+    }
+  }, [uniqueColors]);
 
   return product && product.length > 0 ? (
     <div className="product-list">
@@ -94,11 +102,12 @@ const Product = () => {
         <div className="Filter-container">
           <div className="Filter">
             <span className="Filter-Title">Color</span>
-            {uniqueColors.map((x) => (
+            {uniqueColors.map((x, index) => (
               <div
                 onClick={handleColor}
+                key={index}
                 style={{ backgroundColor: x }}
-                className="filter-color"
+                className={`filter-color ${color === x ? "bordered" : ""}`}
                 id={x}
               ></div>
             ))}
