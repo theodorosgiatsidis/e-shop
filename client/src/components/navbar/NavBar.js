@@ -71,7 +71,9 @@ const NavBar = () => {
             onClick={onClick}
             className="icon fas fa-shopping-cart"
           ></i>
-          <span className="basket-length">{cartItems.length}</span>
+          {cartItems.length > 0 && (
+            <span className="basket-length">{cartItems.length}</span>
+          )}
           <Link className="link" to="/login">
             {!user && <span>LOGIN</span>}
           </Link>
