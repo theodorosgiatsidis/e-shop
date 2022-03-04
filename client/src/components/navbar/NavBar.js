@@ -9,7 +9,7 @@ const NavBar = () => {
   const { cartItems, setCartItems } = useContext(StoreContext);
   const anchor = React.useRef();
   const [show, setShow] = React.useState(false);
-  const itemsPrice = cartItems.reduce((a, c) => a + c.quantity * c.price, 0);
+  const { itemsPrice } = useContext(StoreContext);
   const history = useHistory();
 
   const handleLogout = () => {

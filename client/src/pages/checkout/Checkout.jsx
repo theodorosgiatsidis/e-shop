@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./checkout.css";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import axios from "axios";
+import { StoreContext } from "../../context/store";
 
 const CARD_OPTIONS = {
   iconStyle: "solid",
@@ -27,6 +28,8 @@ function Checkout() {
   const [success, setSuccess] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
+  const { itemsPrice } = useContext(StoreContext);
+  const { cartItems, setCartItems } = useContext(StoreContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,7 +42,7 @@ function Checkout() {
       try {
         const { id } = paymentMethod;
         const response = await axios.post("http://localhost:5000/payment", {
-          amount: 1000,
+          amount: itemsPrice * 100,
           id,
         });
 
@@ -48,6 +51,7 @@ function Checkout() {
         if (response.data.success) {
           console.log("Successful payment");
           setSuccess(true);
+          setCartItems([]);
         }
       } catch (error) {
         console.log("Error", error);

@@ -28,8 +28,8 @@ app.post("/payment", cors(), async (req, res) => {
   try {
     const payment = await stripe.paymentIntents.create({
       amount,
-      currency: "USD",
-      description: "Spatula company",
+      currency: "EUR",
+      description: "Gevris company",
       payment_method: id,
       confirm: true,
     });

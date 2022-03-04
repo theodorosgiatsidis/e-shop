@@ -17,6 +17,7 @@ export const StoreContextProvider = (props) => {
   const [cartItems, setCartItems] = useState([]);
   const [state, dispatch] = useReducer(Reducer, INITIAL_STATE);
   const [favouriteProducts, setFavouriteProducts] = useState([]);
+  const itemsPrice = cartItems.reduce((a, c) => a + c.quantity * c.price, 0);
 
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(state.user));
@@ -57,6 +58,7 @@ export const StoreContextProvider = (props) => {
         dispatch,
         favouriteProducts,
         setFavouriteProducts,
+        itemsPrice,
       }}
     >
       {props.children}
