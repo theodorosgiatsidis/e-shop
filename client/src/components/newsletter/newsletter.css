@@ -1,6 +1,6 @@
 .newsletter {
-  height: 20vh;
-  background-color: lightgray;
+  height: 40vh;
+  background-color: lightsalmon;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,7 +9,7 @@
 
 .title {
   font-size: 70px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .form {
@@ -25,15 +25,17 @@
 
 .input {
   border: none;
-  flex: 8;
   padding-left: 20px;
   font-size: 20px;
+  margin-left: 15px;
 }
 
 .btn {
   color: white;
   background-color: teal;
   font-size: 20px;
-  border-radius: 3px;
+  padding: 10px;
+  border-radius: 10px;
   border: none;
+  width: 15rem;
 }

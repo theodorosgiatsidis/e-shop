@@ -22,6 +22,28 @@ export const StoreContextProvider = (props) => {
     localStorage.setItem("user", JSON.stringify(state.user));
   }, [state.user]);
 
+  useEffect(() => {
+    const cartItems = JSON.parse(localStorage.getItem("cart-items"));
+    if (cartItems) {
+      setCartItems(cartItems);
+    }
+  }, []);
+
+  useEffect(() => {
+    const favouriteProducts = JSON.parse(localStorage.getItem("fav-products"));
+    if (favouriteProducts) {
+      setFavouriteProducts(favouriteProducts);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("cart-items", JSON.stringify(cartItems));
+  }, [cartItems]);
+
+  useEffect(() => {
+    localStorage.setItem("fav-products", JSON.stringify(favouriteProducts));
+  }, [favouriteProducts]);
+
   return (
     <StoreContext.Provider
       value={{
