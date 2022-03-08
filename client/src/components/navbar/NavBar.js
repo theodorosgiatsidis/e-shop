@@ -1,7 +1,8 @@
-import React, { useContext } from "react";
-import { Link, useHistory } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { StoreContext } from "../../context/store";
 import { Popup } from "@progress/kendo-react-popup";
+import axios from "axios";
 import "./navbar.css";
 
 const NavBar = () => {
@@ -11,6 +12,8 @@ const NavBar = () => {
   const [show, setShow] = React.useState(false);
   const { itemsPrice } = useContext(StoreContext);
   const history = useHistory();
+  const [search, setSearch] = useState("");
+  const { clothes, setClothes } = useContext(StoreContext);
 
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" });
@@ -45,6 +48,21 @@ const NavBar = () => {
   const ClickHandler = () => {
     history.push("/favourites");
   };
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    setSearch(e.target.value);
+  };
+
+  useEffect(() => {
+    getProducts();
+  }, [search]);
+
+  const getProducts = async () => {
+    const res = await axios.get(`/products/${search}`);
+    setClothes(res.data);
+  };
+
   return (
     <div className="navbar">
       <div className="container">
@@ -58,7 +76,7 @@ const NavBar = () => {
           </Link>
         </div>
         <div className="navCentre">
-          <form className="search-bar">
+          <form onChange={handleChange} className="search-bar">
             <input type="search" placeholder="Search" />
             <i className="nav-icon fas fa-search"></i>
           </form>
@@ -104,7 +122,7 @@ const NavBar = () => {
               ))}
               <div className="totalPrice">
                 {itemsPrice ? (
-                  <strong>Total Price: {itemsPrice}$</strong>
+                  <strong>Total Price: {itemsPrice}€</strong>
                 ) : null}
               </div>
               <div className="Checkout">

@@ -22,13 +22,14 @@ router.get("/", async (req, res) => {
   }
 });
 
-//GET PRODUCT by ID
+//GET PRODUCT by title
 
 router.get("/:title", async (req, res) => {
   try {
     const title = req.params.title;
-    const products = await Product.find({ title });
-    products.filter((p) => p.title === title);
+    const products = await Product.find({
+      title: { $regex: ".*" + title + ".*" },
+    });
     res.status(200).json(products);
   } catch (error) {
     res.status(500).json(error);
