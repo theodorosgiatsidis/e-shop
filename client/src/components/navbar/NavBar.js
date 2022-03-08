@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { StoreContext } from "../../context/store";
 import { Popup } from "@progress/kendo-react-popup";
 import axios from "axios";
@@ -13,7 +13,7 @@ const NavBar = () => {
   const { itemsPrice } = useContext(StoreContext);
   const history = useHistory();
   const [search, setSearch] = useState("");
-  const { clothes, setClothes } = useContext(StoreContext);
+  const { setClothes } = useContext(StoreContext);
 
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" });
