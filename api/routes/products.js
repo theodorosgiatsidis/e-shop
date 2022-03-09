@@ -15,7 +15,10 @@ router.post("/", async (req, res) => {
 //GET PRODUCT
 router.get("/", async (req, res) => {
   try {
-    const products = await Product.find();
+    const { page = 1, limit = 10 } = req.query;
+    const products = await Product.find()
+      .limit(limit * 1)
+      .skip((page - 1) * limit);
     res.status(200).json(products);
   } catch (error) {
     res.status(500).json(error);

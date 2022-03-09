@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { StoreContext } from "../../context/store";
 import Product from "../product/Product";
 import axios from "axios";
@@ -6,13 +6,15 @@ import "./products.css";
 
 const Products = () => {
   const { clothes, setClothes } = useContext(StoreContext);
+  const [page, setPage] = useState(1);
+  const [limit] = useState(11);
 
   useEffect(() => {
     getClothes();
-  }, []);
+  }, [page]);
 
   const getClothes = async () => {
-    const res = await axios.get("/products");
+    const res = await axios.get(`/products?page=${page}&limit=${limit}`);
     setClothes(res.data);
   };
 
@@ -31,6 +33,14 @@ const Products = () => {
 
   const x = Object.values(newClothes);
 
+  const prevClick = () => {
+    setPage(page - 1);
+  };
+
+  const nextClick = () => {
+    setPage(page + 1);
+  };
+
   return (
     <div className="products">
       {x.map((item) => (
@@ -43,6 +53,16 @@ const Products = () => {
           price={item.price}
         />
       ))}
+      {page > 1 && (
+        <button onClick={prevClick} className="prev-button">
+          Previous
+        </button>
+      )}
+      {page < 3 && (
+        <button onClick={nextClick} className="next-button">
+          Next
+        </button>
+      )}
     </div>
   );
 };
