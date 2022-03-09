@@ -28,11 +28,12 @@ router.get("/:title", async (req, res) => {
   try {
     const title = req.params.title;
     const products = await Product.find({
-      title: { $regex: ".*" + title + ".*" },
+      title: { $regex: ".*" + title + ".*", $options: "i" },
     });
     res.status(200).json(products);
   } catch (error) {
     res.status(500).json(error);
   }
 });
+
 module.exports = router;
