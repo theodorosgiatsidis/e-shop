@@ -55,11 +55,7 @@ function Register() {
       <button className="registerLoginButton">
         <Link to="/login">Login</Link>
       </button>
-      {error && (
-        <span style={{ color: " red", marginTop: "10px" }}>
-          Something went wrong
-        </span>
-      )}
+      {error && <span className="span-register">Something went wrong</span>}
     </div>
   );
 }

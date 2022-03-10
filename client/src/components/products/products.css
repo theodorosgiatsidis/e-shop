@@ -4,3 +4,9 @@
   width: 33.33333;
   justify-content: center;
 }
+
+.products-wrapper {
+  display: flex;
+  margin: 20px;
+  padding: 20px;
+}

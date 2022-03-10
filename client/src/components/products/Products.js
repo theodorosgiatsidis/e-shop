@@ -7,14 +7,14 @@ import "./products.css";
 const Products = () => {
   const { clothes, setClothes } = useContext(StoreContext);
   const [page, setPage] = useState(1);
-  const [limit] = useState(11);
+  const [limit] = useState(3);
 
   useEffect(() => {
     getClothes();
   }, [page]);
 
   const getClothes = async () => {
-    const res = await axios.get(`/products?page=${page}&limit=${limit}`);
+    const res = await axios.get(`/products`);
     setClothes(res.data);
   };
 
@@ -43,22 +43,25 @@ const Products = () => {
 
   return (
     <div className="products">
-      {x.map((item) => (
-        <Product
-          key={item._id}
-          title={item.title}
-          description={item.description}
-          picture={item.picture}
-          id={item._id}
-          price={item.price}
-        />
-      ))}
-      {page > 1 && (
+      <div className="products-wrapper">
+        {x.slice((page - 1) * limit, page * limit).map((item) => (
+          <Product
+            key={item._id}
+            title={item.title}
+            description={item.description}
+            picture={item.picture}
+            id={item._id}
+            price={item.price}
+          />
+        ))}
+      </div>
+
+      {(page - 1) * limit > 0 && (
         <button onClick={prevClick} className="prev-button">
           Previous
         </button>
       )}
-      {page < 3 && (
+      {page * limit < x.length && (
         <button onClick={nextClick} className="next-button">
           Next
         </button>

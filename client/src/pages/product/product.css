@@ -11,7 +11,7 @@
 
 Img:hover {
   box-shadow: -1px 1px 10px -2px rgba(0, 0, 0, 0.35);
-  transition: transform 0.5s ease;
+  transition: 0.5s ease;
   transform: scale(1.1);
   cursor: pointer;
   border-radius: 5px;
@@ -24,7 +24,7 @@ Img:hover {
 }
 
 .title {
-  font-weight: 200;
+  font-weight: 400;
 }
 
 .desc {
@@ -32,7 +32,7 @@ Img:hover {
 }
 
 .price {
-  font-weight: 100;
+  font-weight: 400;
   font-size: 30px;
 }
 
@@ -73,6 +73,7 @@ Img:hover {
 .filter-color.bordered {
   outline: 3px solid teal;
 }
+
 .AddContainer {
   width: 50%;
   display: flex;
@@ -109,4 +110,8 @@ Img:hover {
 
 .cart-btn:hover {
   background-color: gray;
+}
+
+p {
+  margin: 10px;
 }

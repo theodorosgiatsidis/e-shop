@@ -9,7 +9,7 @@ const Product = () => {
   const [color, setColor] = useState("");
   const [quantity, setQuantity] = useState(1);
   const { cartItems, setCartItems } = useContext(StoreContext);
-  const [product, setProduct] = useState([]);
+  const [products, setProducts] = useState([]);
   const { title } = useParams();
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const Product = () => {
 
   const getProduct = async () => {
     const res = await axios.get("/products/" + title);
-    setProduct(res.data);
+    setProducts(res.data);
   };
 
   const incrementCount = () => {
@@ -47,7 +47,7 @@ const Product = () => {
       return;
     }
 
-    const productToAdd = product.find(
+    const productToAdd = products.find(
       (p) => p.size === size && p.color === color
     );
 
@@ -74,14 +74,14 @@ const Product = () => {
   };
 
   const uniqueSizes = [
-    ...new Map(product.map((item) => [item.size, item.size])).values(),
+    ...new Map(products.map((item) => [item.size, item.size])).values(),
   ];
 
   const uniqueColors = useMemo(() => {
     return [
-      ...new Map(product.map((item) => [item.color, item.color])).values(),
+      ...new Map(products.map((item) => [item.color, item.color])).values(),
     ];
-  }, [product]);
+  }, [products]);
 
   useEffect(() => {
     if (uniqueColors.length > 0) {
@@ -89,14 +89,23 @@ const Product = () => {
     }
   }, [uniqueColors]);
 
-  return product && product.length > 0 ? (
+  return products && products.length > 0 ? (
     <div className="product-list">
       <div className="wrapper">
         <div>
-          <h1 className="title">{product[0].title}</h1>
-          <img className="Img" src={product[0].picture} />
-          <p className="desc">{product[0].description}</p>
-          <span className="price">Price: {product[0].price}$</span>
+          <h1 className="title">{products[0].title}</h1>
+
+          <img
+            className="Img"
+            src={
+              color
+                ? products.find((p) => p.color === color).picture
+                : products[0].picture
+            }
+          />
+
+          <p className="desc">{products[0].description}</p>
+          <span className="price">Price: {products[0].price}$</span>
         </div>
 
         <div className="Filter-container">

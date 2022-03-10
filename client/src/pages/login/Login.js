@@ -27,9 +27,19 @@ const Login = () => {
       <form onSubmit={handleSubmit} className="login-form">
         <h1>Sign in</h1>
         <label>Username</label>
-        <input ref={userRef} type="text" placeholder="Username..." />
+        <input
+          className="login-input"
+          ref={userRef}
+          type="text"
+          placeholder="Username..."
+        />
         <label>Password</label>
-        <input ref={passwordRef} type="password" placeholder="Password.." />
+        <input
+          className="login-input"
+          ref={passwordRef}
+          type="password"
+          placeholder="Password.."
+        />
         <button className="login-btn" type="submit" disabled={isFetching}>
           Submit
         </button>

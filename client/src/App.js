@@ -32,10 +32,10 @@ function App() {
               <Product />
             </Route>
             <Route path="/checkout">
-              <StripeContainer />
+              {user ? <StripeContainer /> : <Register />}
             </Route>
             <Route path="/favourites">
-              <FavouriteProducts />
+              {user ? <FavouriteProducts /> : <Register />}
             </Route>
           </Switch>
           <Newsletter />
