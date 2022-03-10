@@ -135,11 +135,13 @@ const Product = () => {
 
         <div className="AddContainer">
           <div className="AmountContainer">
-            <i
-              style={{ cursor: "pointer" }}
-              onClick={decrementCount}
-              className="fas fa-minus"
-            ></i>
+            {quantity > 1 && (
+              <i
+                style={{ cursor: "pointer" }}
+                onClick={decrementCount}
+                className="fas fa-minus"
+              ></i>
+            )}
             <span className="Amount">{quantity}</span>
             <i
               style={{ cursor: "pointer" }}
