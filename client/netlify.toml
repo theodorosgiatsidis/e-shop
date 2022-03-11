@@ -1,0 +1,2 @@
+[[redirects]]
+/api/* https://gevris.herokuapp.com/api/:splat 200
