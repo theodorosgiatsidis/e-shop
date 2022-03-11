@@ -41,7 +41,7 @@ function Checkout() {
     if (!error) {
       try {
         const { id } = paymentMethod;
-        const response = await axios.post("http://localhost:5000/payment", {
+        const response = await axios.post("/payment", {
           amount: itemsPrice * 100,
           id,
         });
