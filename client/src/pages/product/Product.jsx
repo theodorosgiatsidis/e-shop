@@ -17,7 +17,7 @@ const Product = () => {
   }, [size]);
 
   const getProduct = async () => {
-    const res = await axios.get("/products/" + title);
+    const res = await axios.get("/api/products/" + title);
     setProducts(res.data);
   };
 

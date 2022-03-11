@@ -59,7 +59,7 @@ const NavBar = () => {
   }, [search]);
 
   const getProducts = async () => {
-    const res = await axios.get(`/products/${search}`);
+    const res = await axios.get(`/api/products/${search}`);
     setClothes(res.data);
   };
 

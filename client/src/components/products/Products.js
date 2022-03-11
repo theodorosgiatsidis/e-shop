@@ -14,7 +14,7 @@ const Products = () => {
   }, [page]);
 
   const getClothes = async () => {
-    const res = await axios.get(`/products`);
+    const res = await axios.get(`/api/products`);
     setClothes(res.data);
   };
 
