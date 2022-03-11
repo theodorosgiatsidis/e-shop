@@ -19,7 +19,7 @@ mongoose
   .then(console.log("Connected to MongoDB"))
   .catch((err) => console.log(err));
 
-app.use(express.json());
+// app.use(express.json());
 
 app.use("/api/auth", authRoute);
 app.use("/api/products", Product);
@@ -47,6 +47,6 @@ app.post("/payment", cors(), async (req, res) => {
   }
 });
 
-app.listen("5000", () => {
+app.listen(process.env.PORT || 5000, () => {
   console.log("Backend is Running");
 });
