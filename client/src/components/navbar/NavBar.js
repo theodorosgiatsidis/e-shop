@@ -77,12 +77,12 @@ const NavBar = () => {
         </div>
         <div className="navCentre">
           <form onChange={handleChange} className="search-bar">
-            <input type="search" placeholder="Search" />
+            <input className="input-nav" type="search" placeholder="Search" />
             <i className="nav-icon fas fa-search"></i>
           </form>
         </div>
         <div className="navRight">
-          {user && <i className="fas fa-user-circle"></i>}
+          {user && <i className="icon fas fa-user-circle"></i>}
           <i onClick={ClickHandler} className="icon fas fa-heart"></i>
           <i
             ref={anchor}
@@ -93,10 +93,10 @@ const NavBar = () => {
             <span className="basket-length">{cartItems.length}</span>
           )}
           <Link className="link" to="/login">
-            {!user && <span>LOGIN</span>}
+            {!user && <span className="login">LOGIN</span>}
           </Link>
           <Link className="link" to="/register">
-            {!user && <span>REGISTER</span>}
+            {!user && <span className="register">REGISTER</span>}
           </Link>
 
           <Popup

@@ -24,3 +24,14 @@
   margin: 5px;
   border: none;
 }
+
+@media (max-width: 400px) {
+  .login-form h1 {
+    font-size: 30px;
+  }
+
+  .login-form button {
+    font-size: 20px;
+    width: 30%;
+  }
+}

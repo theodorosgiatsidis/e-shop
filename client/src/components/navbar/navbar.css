@@ -34,9 +34,6 @@
   margin-left: 20px;
   font-size: 20px;
 }
-span {
-  margin-left: 10px;
-}
 
 .icon {
   margin-left: 10px;
@@ -45,6 +42,7 @@ span {
 .link {
   text-decoration: none;
   color: inherit;
+  margin: 2px;
 }
 
 .logout {
@@ -63,18 +61,11 @@ span {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  align-items: center;
   border: 1px solid black;
   margin: 10px;
   padding: 10px;
 }
-
-/* .popup-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  position: absolute;
-} */
 
 .totalPrice {
   padding: 10px;
@@ -108,4 +99,63 @@ span {
   margin: 5px;
   background-color: red;
   border-radius: 50%;
+}
+
+@media (max-width: 400px) {
+  .App {
+    overflow: hidden;
+  }
+  .navImg {
+    width: 80px;
+    height: 40px;
+  }
+
+  .navCentre {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .input-nav {
+    width: 5rem;
+    position: relative;
+    top: 10px;
+    left: 30px;
+  }
+  .nav-icon {
+    font-size: 0px;
+  }
+
+  .navRight {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2px;
+  }
+
+  .icon {
+    font-size: 15px;
+    position: relative;
+    left: 20px;
+  }
+
+  .login {
+    font-size: 12px;
+  }
+
+  .register {
+    font-size: 12px;
+  }
+
+  .basket-length {
+    position: relative;
+    left: 10px;
+  }
+
+  .logout {
+    font-size: 12px;
+  }
+
+  .BasketItems span {
+    font-size: 13px;
+  }
 }

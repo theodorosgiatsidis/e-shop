@@ -112,6 +112,59 @@ Img:hover {
   background-color: gray;
 }
 
-p {
-  margin: 10px;
+@media (max-width: 400px) {
+  .product-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .product-wrapper h1 {
+    font-size: 30px;
+  }
+  .product-wrapper p {
+    font-size: 13px;
+  }
+
+  .product-wrapper span {
+    font-size: 17px;
+  }
+
+  .Filter-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 150px;
+  }
+
+  .FilterSize {
+    position: absolute;
+    right: 10px;
+    top: 230px;
+  }
+  .size-select {
+    font-size: 12px;
+    position: absolute;
+    top: 20px;
+  }
+
+  .Filter {
+    position: absolute;
+    top: 20px;
+    left: 30px;
+  }
+
+  .AmountContainer {
+    position: relative;
+    top: 80px;
+  }
+  .AmountContainer span {
+    font-size: 13px;
+  }
+  .AmountContainer button {
+    font-size: 12px;
+  }
 }

@@ -92,7 +92,7 @@ const Product = () => {
   return products && products.length > 0 ? (
     <div className="product-list">
       <div className="wrapper">
-        <div>
+        <div className="product-wrapper">
           <h1 className="title">{products[0].title}</h1>
 
           <img

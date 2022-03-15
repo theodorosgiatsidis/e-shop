@@ -5,3 +5,13 @@
   margin-right: 120px;
   margin-top: 70px;
 }
+
+@media (max-width: 400px) {
+  .footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+  }
+}
