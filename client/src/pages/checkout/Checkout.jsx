@@ -29,7 +29,7 @@ function Checkout() {
   const stripe = useStripe();
   const elements = useElements();
   const { itemsPrice } = useContext(StoreContext);
-  const { cartItems, setCartItems } = useContext(StoreContext);
+  const { setCartItems } = useContext(StoreContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,7 +41,7 @@ function Checkout() {
     if (!error) {
       try {
         const { id } = paymentMethod;
-        const response = await axios.post("/api/payment", {
+        const response = await axios.post("/payment", {
           amount: itemsPrice * 100,
           id,
         });
