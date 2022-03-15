@@ -140,10 +140,16 @@
 
   .login {
     font-size: 12px;
+    position: relative;
+    top: 20px;
+    left: 20px;
   }
 
   .register {
     font-size: 12px;
+    position: relative;
+    top: 20px;
+    left: 20px;
   }
 
   .basket-length {
@@ -153,6 +159,7 @@
 
   .logout {
     font-size: 12px;
+    margin-left: 10px;
   }
 
   .BasketItems span {
