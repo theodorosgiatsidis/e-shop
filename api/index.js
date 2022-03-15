@@ -19,11 +19,11 @@ mongoose
   .then(console.log("Connected to MongoDB"))
   .catch((err) => console.log(err));
 
-// app.use(express.json());
+app.use(express.json());
 
 app.use("/api/auth", authRoute);
 app.use("/api/products", Product);
-app.post("/payment", cors(), async (req, res) => {
+app.post("/api/payment", cors(), async (req, res) => {
   let { amount, id } = req.body;
   try {
     const payment = await stripe.paymentIntents.create({
