@@ -19,7 +19,7 @@ mongoose
   .then(console.log("Connected to MongoDB"))
   .catch((err) => console.log(err));
 
-app.use(express.json());
+app.use(express.static(__dirname + "/public"));
 
 app.use("/api/auth", authRoute);
 app.use("/api/products", Product);
