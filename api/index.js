@@ -23,7 +23,7 @@ app.use(express.static(__dirname + "/public"));
 
 app.use("/api/auth", authRoute);
 app.use("/api/products", Product);
-app.post("/payment", cors(), async (req, res) => {
+app.post("/api/payment", cors(), async (req, res) => {
   let { amount, id } = req.body;
   try {
     const payment = await stripe.paymentIntents.create({
