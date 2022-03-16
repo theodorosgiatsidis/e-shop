@@ -42,5 +42,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://gevris.herokuapp.com"
+  "proxy": "https://gevris.herokuapp.com/api"
 }
